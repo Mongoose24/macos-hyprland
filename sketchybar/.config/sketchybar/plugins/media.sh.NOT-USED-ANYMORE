@@ -1,0 +1,19 @@
+#!/bin/bash
+
+STATE="$(nowplaying-cli get playbackRate 2>/dev/null)"
+TITLE="$(nowplaying-cli get title 2>/dev/null)"
+ARTIST="$(nowplaying-cli get artist 2>/dev/null)"
+
+if [ "$STATE" != "0" ] && [ -n "$TITLE" ]; then
+  if [ -n "$ARTIST" ] && [ "$ARTIST" != "(null)" ]; then
+    MEDIA="$TITLE - $ARTIST"
+  else
+    MEDIA="$TITLE"
+  fi
+
+  sketchybar --set "$NAME" \
+    label="$MEDIA" \
+    drawing=on
+else
+  sketchybar --set "$NAME" drawing=off
+fi

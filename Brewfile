@@ -1,0 +1,15 @@
+tap "FelixKratz/formulae"
+
+brew "stow"
+brew "yabai"
+brew "skhd"
+brew "fswatch"
+brew "jq"
+brew "nowplaying-cli"
+brew "media-control"
+brew "sketchybar"
+
+cask "font-hack-nerd-font"
+cask "font-sf-pro"
+cask "sf-symbols"
+cask "karabiner-elements"
