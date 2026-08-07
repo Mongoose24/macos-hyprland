@@ -85,12 +85,12 @@ for path in "${managed_paths[@]}"; do
   fi
 done
 
-log "Stowing yabai, skhd, and sketchybar packages..."
+log "Stowing the config package..."
 cd "$REPO_DIR"
-stow --target="$TARGET_HOME" yabai skhd sketchybar
+stow --target="$TARGET_HOME" config
 
 log "Ensuring config scripts are executable..."
-find "$REPO_DIR/yabai" "$REPO_DIR/skhd" "$REPO_DIR/sketchybar" \
+find "$REPO_DIR/config" \
   -type f \( -name '*.sh' -o -name 'yabairc' -o -name '.skhdrc' \) \
   -exec chmod +x {} +
 chmod +x "$REPO_DIR/init.sh" "$REPO_DIR/watch.sh"

@@ -4,9 +4,10 @@ set -uo pipefail
 REPO_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 DEBOUNCE_SECONDS="${DEBOUNCE_SECONDS:-0.25}"
 
-YABAI_DIR="$REPO_DIR/yabai"
-SKHD_DIR="$REPO_DIR/skhd"
-SKETCHYBAR_DIR="$REPO_DIR/sketchybar"
+CONFIG_DIR="$REPO_DIR/config"
+YABAI_DIR="$CONFIG_DIR/.config/yabai"
+SKHD_DIR="$CONFIG_DIR/.skhdrc"
+SKETCHYBAR_DIR="$CONFIG_DIR/.config/sketchybar"
 
 log() {
   printf '[watch] %s\n' "$*"
@@ -95,7 +96,7 @@ while IFS= read -r -d '' changed_path; do
     classify_path "$queued_path"
   done
 
-  (( needs_yabai )) && restow_and_restart yabai yabai
-  (( needs_skhd )) && restow_and_restart skhd skhd
-  (( needs_sketchybar )) && restow_and_restart sketchybar sketchybar
+  (( needs_yabai )) && restow_and_restart config yabai
+  (( needs_skhd )) && restow_and_restart config skhd
+  (( needs_sketchybar )) && restow_and_restart config sketchybar
  done
