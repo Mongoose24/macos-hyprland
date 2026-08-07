@@ -18,6 +18,15 @@ fail() {
   exit 1
 }
 
+# macOS ships Bash 3.2, whose `read -t` only accepts whole seconds.
+# Round the configured debounce interval up for the quiet-period read.
+DEBOUNCE_TIMEOUT="$(awk -v value="$DEBOUNCE_SECONDS" 'BEGIN {
+  if (value !~ /^[0-9]+([.][0-9]+)?$/) exit 1
+  value = int(value + 0.999999)
+  if (value < 1) value = 1
+  print value
+}')" || fail "DEBOUNCE_SECONDS must be a non-negative number."
+
 command -v fswatch >/dev/null 2>&1 || fail "fswatch is required. Run ./init.sh first."
 command -v stow >/dev/null 2>&1 || fail "GNU Stow is required. Run ./init.sh first."
 command -v brew >/dev/null 2>&1 || fail "Homebrew is required. Run ./init.sh first."
@@ -57,14 +66,37 @@ restart_service() {
   esac
 }
 
+stow_target() {
+  local service="$1"
+
+  case "$service" in
+    yabai) printf '%s\n' "$HOME/.config/yabai" ;;
+    skhd) printf '%s\n' "$HOME/.skhdrc" ;;
+    sketchybar) printf '%s\n' "$HOME/.config/sketchybar" ;;
+    *) return 1 ;;
+  esac
+}
+
+restow_needed() {
+  local service="$1"
+  local target
+  target="$(stow_target "$service")" || return 0
+
+  # Stow creates symlinks for these package roots. Once the root link exists,
+  # edits and new files below it are immediately visible without restowing.
+  [[ ! -L "$target" || ! -e "$target" ]]
+}
+
 restow_and_restart() {
   local package="$1"
   local service="$2"
 
-  log "Stowing $package..."
-  if ! (cd "$REPO_DIR" && stow --target="$HOME" --restow "$package"); then
-    log "Stow failed for $package; leaving $service unchanged."
-    return
+  if restow_needed "$service"; then
+    log "Stowing $package (package link missing)..."
+    if ! (cd "$REPO_DIR" && stow --target="$HOME" --restow "$package"); then
+      log "Stow failed for $package; leaving $service unchanged."
+      return
+    fi
   fi
 
   log "Restarting $service..."
@@ -89,10 +121,10 @@ while IFS= read -r -d '' changed_path; do
   needs_sketchybar=0
   classify_path "$changed_path"
 
-  sleep "$DEBOUNCE_SECONDS"
-
-  # Drain events already queued during the debounce window.
-  while IFS= read -r -d '' -t 0 queued_path; do
+  # Keep collecting events until the filesystem has been quiet for the
+  # debounce interval. This handles editor save sequences whose events are
+  # spread out over multiple reads (temporary file, rename, chmod, etc.).
+  while IFS= read -r -d '' -t "$DEBOUNCE_TIMEOUT" queued_path; do
     classify_path "$queued_path"
   done
 

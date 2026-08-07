@@ -12,8 +12,8 @@ if [ "$SELECTED" = true ]; then
     background.color="$ACCENT_COLOR"                \
     background.corner_radius=100                    \
     background.height=24                            \
-    icon.color="$BAR_COLOR"                         \
-    label.color="$BAR_COLOR"
+    icon.color="$BAR_TEXT_COLOR"                         \
+    label.color="$BAR_TEXT_COLOR"
 else
   sketchybar --set "$NAME"                          \
     background.drawing=off                          \

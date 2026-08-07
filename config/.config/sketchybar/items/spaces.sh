@@ -10,6 +10,7 @@ do
 		padding_left=8 \
 		padding_right=8 \
 		label.font="sketchybar-app-font:Regular:14.0" \
+		label.color=$ACCENT_COLOR \
 		label.padding_right=11 \
 		label.y_offset=-1 \
 		script="$PLUGIN_DIR/space.sh"

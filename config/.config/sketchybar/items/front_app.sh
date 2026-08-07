@@ -9,9 +9,9 @@ sketchybar --add item front_app left \
              background.drawing=on \
              background.color="$ACCENT_COLOR" \
              icon.drawing=on \
-             icon.color="$BAR_COLOR" \
+             icon.color="$BAR_TEXT_COLOR" \
              icon.font="sketchybar-app-font:Regular:12.0" \
              label.drawing=on \
-             label.color="$BAR_COLOR" \
+             label.color="$BAR_TEXT_COLOR" \
              script="$PLUGIN_DIR/front_app.sh" \
            --subscribe front_app front_app_switched
