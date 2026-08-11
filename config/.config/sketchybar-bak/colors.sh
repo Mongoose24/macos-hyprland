@@ -1,5 +1,9 @@
 #!/bin/bash
-# Catppuccin colors
+
+# Catppuccin Frappe palette
+#
+# WHITE is kept as a compatibility alias for TEXT.  It is not literal white;
+# it is Catppuccin's light text color.
 export ROSEWATER=0xfff2d5cf
 export FLAMINGO=0xffeebebe
 export PINK=0xfff4b8e4
@@ -27,30 +31,14 @@ export BASE=0xff303446
 export MANTLE=0xff292c3c
 export CRUST=0xff232634
 
-# Color Palette
-export BLACK=0xff181926
-export WHITE=0xffcad3f5
-export RED=0xffed8796
-export GREEN=0xffa6da95
-export BLUE=0xff8aadf4
-export YELLOW=0xffeed49f
-export ORANGE=0xfff5a97f
-export MAGENTA=0xffc6a0f6
-export GREY=0xff939ab7
-export TRANSPARENT=0x00000000
+# Compatibility alias used by the existing configuration. This is not
+# literal white; it is the Catppuccin text color above.
+export WHITE="$TEXT"
 
-# Compatibility aliases used by the space components
-export BAR_TEXT_COLOR=0xff0C0C0C
-export ACCENT_COLOR=$TEXT
-
-# General bar colors
+# -- Gray Scheme --
+# Keep the bar background independent from foreground content. BAR_COLOR may
+# be transparent; this color is intentionally always opaque.
 export BAR_COLOR=0x800C0C0C
-export ICON_COLOR=$WHITE # Color of all icons
-export LABEL_COLOR=$WHITE # Color of all labels
-export BACKGROUND_1=0x903c3e4f
-export BACKGROUND_2=0x90494d64
-
-export POPUP_BACKGROUND_COLOR=0xff24273a
-export POPUP_BORDER_COLOR=$WHITE
-
-export SHADOW_COLOR=$BLACK
+export BAR_TEXT_COLOR=0xff0C0C0C
+export ITEM_BG_COLOR=0xff353c3f
+export ACCENT_COLOR="$TEXT"

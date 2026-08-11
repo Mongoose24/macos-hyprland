@@ -1,4 +1,4 @@
-#!/bin/bash
+#argdo setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 | retab! | normal! gg=G | update!/bin/sh
 
 # The $SELECTED variable is available for space components and indicates if
 # the space invoking this script (with name: $NAME) is currently selected:
@@ -12,7 +12,7 @@ if [ "$SELECTED" = true ]; then
     background.color="$ACCENT_COLOR"                \
     background.corner_radius=100                    \
     background.height=24                            \
-    icon.color="$BAR_TEXT_COLOR"                   \
+    icon.color="$BAR_TEXT_COLOR"                         \
     label.color="$BAR_TEXT_COLOR"
 else
   sketchybar --set "$NAME"                          \

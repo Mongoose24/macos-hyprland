@@ -8,6 +8,7 @@ brew "jq"
 brew "nowplaying-cli"
 brew "media-control"
 brew "sketchybar"
+brew "switchaudio-osx"
 
 cask "font-hack-nerd-font"
 cask "font-sf-pro"
