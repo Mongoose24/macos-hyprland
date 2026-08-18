@@ -1,3 +1,12 @@
+# LaunchAgents do not always inherit Homebrew's PATH after a macOS update.
+# Keep signal actions able to find SketchyBar when yabai is started by launchd.
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
+SKETCHYBAR_BIN="$(command -v sketchybar 2>/dev/null || echo /opt/homebrew/bin/sketchybar)"
+# Window notifications can arrive before Mission Control exposes the new AX
+# window. Delay the aggregate refresh so its query sees the settled window.
+REFRESH_SPACES="sleep 1; SENDER=windows_on_spaces NAME=yabai CONFIG_DIR=$HOME/.config/sketchybar $HOME/.config/sketchybar/plugins/yabai.sh"
+
 yabai -m config external_bar all:30:0
 
 # Tiling style:bsp, stack, or float
@@ -26,12 +35,15 @@ yabai -m rule --add app="^Karabiner-Elements$" manage=off
 yabai -m rule --add app="^Raycast$" manage=off
 
 # Sketchybar integration
-yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
-yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
-yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
-yabai -m signal --add event=window_moved action="sketchybar --trigger windows_on_spaces"
-yabai -m signal --add event=space_changed action="sketchybar --trigger space_change --trigger windows_on_spaces"
-yabai -m signal --add event=space_created action="sketchybar --trigger space_change --trigger windows_on_spaces"
-yabai -m signal --add event=space_destroyed action="sketchybar --trigger space_change --trigger windows_on_spaces"
+yabai -m signal --add event=window_focused action="$SKETCHYBAR_BIN --trigger window_focus"
+yabai -m signal --add event=window_created action="$REFRESH_SPACES"
+yabai -m signal --add event=window_destroyed action="$REFRESH_SPACES"
+yabai -m signal --add event=window_moved action="$REFRESH_SPACES"
+yabai -m signal --add event=window_minimized action="$REFRESH_SPACES"
+yabai -m signal --add event=window_deminimized action="$REFRESH_SPACES"
+yabai -m signal --add event=space_changed action="$SKETCHYBAR_BIN --trigger space_change; $REFRESH_SPACES"
+yabai -m signal --add event=space_created action="$SKETCHYBAR_BIN --trigger space_change; $REFRESH_SPACES"
+yabai -m signal --add event=space_destroyed action="$SKETCHYBAR_BIN --trigger space_change; $REFRESH_SPACES"
+yabai -m signal --add event=display_changed action="$SKETCHYBAR_BIN --trigger display_change; $REFRESH_SPACES"
 
 # Keyboard shortcuts are handled by skhd; see ~/.skhdrc.
