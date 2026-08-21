@@ -1,56 +1,51 @@
 #!/bin/bash
-# Catppuccin colors
-export ROSEWATER=0xfff2d5cf
-export FLAMINGO=0xffeebebe
-export PINK=0xfff4b8e4
-export MAUVE=0xffca9ee6
-export RED=0xffe78284
-export MAROON=0xffea999c
-export PEACH=0xffef9f76
-export YELLOW=0xffe5c890
-export GREEN=0xffa6d189
-export TEAL=0xff81c8be
-export SKY=0xff99d1db
-export SAPPHIRE=0xff85c1dc
-export BLUE=0xff8caaee
-export LAVENDER=0xffbabbf1
-export TEXT=0xffc6d0f5
-export SUBTEXT1=0xffb5bfe2
-export SUBTEXT0=0xffa5adce
-export OVERLAY2=0xff949cbb
-export OVERLAY1=0xff838ba7
-export OVERLAY0=0xff737994
-export SURFACE2=0xff626880
-export SURFACE1=0xff51576d
-export SURFACE0=0xff414559
-export BASE=0xff303446
-export MANTLE=0xff292c3c
-export CRUST=0xff232634
 
-# Color Palette
-export BLACK=0xff181926
-export WHITE=0xffcad3f5
+# Catppuccin Macchiato
+export ROSEWATER=0xfff4dbd6
+export FLAMINGO=0xfff0c6c6
+export PINK=0xfff5bde6
+export MAUVE=0xffc6a0f6
 export RED=0xffed8796
-export GREEN=0xffa6da95
-export BLUE=0xff8aadf4
+export MAROON=0xffee99a0
+export PEACH=0xfff5a97f
 export YELLOW=0xffeed49f
-export ORANGE=0xfff5a97f
-export MAGENTA=0xffc6a0f6
-export GREY=0xff939ab7
+export GREEN=0xffa6da95
+export TEAL=0xff8bd5ca
+export SKY=0xff91d7e3
+export SAPPHIRE=0xff7dc4e4
+export BLUE=0xff8aadf4
+export LAVENDER=0xffb7bdf8
+export TEXT=0xffcad3f5
+export SUBTEXT1=0xffb8c0e0
+export SUBTEXT0=0xffa5adcb
+export OVERLAY2=0xff939ab7
+export OVERLAY1=0xff8087a2
+export OVERLAY0=0xff6e738d
+export SURFACE2=0xff5b6078
+export SURFACE1=0xff494d64
+export SURFACE0=0xff363a4f
+export BASE=0xff24273a
+export MANTLE=0xff1e2030
+export CRUST=0xff181926
+
+# Compatibility aliases used by existing item scripts.
+export BLACK=$CRUST
+export WHITE=$TEXT
+export ORANGE=$PEACH
+export MAGENTA=$MAUVE
+export GREY=$OVERLAY2
 export TRANSPARENT=0x00000000
 
-# Compatibility aliases used by the space components
-export BAR_TEXT_COLOR=0xff0C0C0C
-export ACCENT_COLOR=$TEXT
-
-# General bar colors
+# Shared bar and widget colors.
+export BAR_TEXT_COLOR=$CRUST
+export ACCENT_COLOR=$LAVENDER
+# Keep the existing translucent black bar background.
 export BAR_COLOR=0x800C0C0C
-export ICON_COLOR=$WHITE # Color of all icons
-export LABEL_COLOR=$WHITE # Color of all labels
-export BACKGROUND_1=0x903c3e4f
-export BACKGROUND_2=0x90494d64
+export ICON_COLOR=$TEXT
+export LABEL_COLOR=$TEXT
+export BACKGROUND_1=$SURFACE0
+export BACKGROUND_2=$SURFACE1
 
-export POPUP_BACKGROUND_COLOR=0xff24273a
-export POPUP_BORDER_COLOR=$WHITE
-
-export SHADOW_COLOR=$BLACK
+export POPUP_BACKGROUND_COLOR=$BASE
+export POPUP_BORDER_COLOR=$LAVENDER
+export SHADOW_COLOR=$CRUST

@@ -9,12 +9,6 @@ PLUGIN_DIR="$HOME/.config/sketchybar/plugins" # Directory where all the plugin s
 FONT="SF Pro" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
 PADDINGS=3 # All paddings use this value (icon, label, background)
 
-# Setting up and starting the helper process
-HELPER=git.felix.helper
-killall helper
-cd $HOME/.config/sketchybar/helper && make
-$HOME/.config/sketchybar/helper/helper $HELPER > /dev/null 2>&1 &
-
 # Disable the macOS on-screen volume/brightness overlay. `unload` alone is
 # temporary and newer macOS versions may relaunch this LaunchAgent.
 GUI_DOMAIN="gui/$(id -u)"
@@ -78,6 +72,7 @@ source "$ITEM_DIR/brew.sh"
 # source "$ITEM_DIR/github.sh"
 source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/volume.sh"
+source "$ITEM_DIR/memory.sh"
 source "$ITEM_DIR/cpu.sh"
 
 # Forcing all item scripts to run (never do this outside of sketchybarrc)
