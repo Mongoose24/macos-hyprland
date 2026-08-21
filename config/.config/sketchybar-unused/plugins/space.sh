@@ -8,7 +8,7 @@ update() {
   if [ "$SELECTED" = true ]; then
     sketchybar --set "$NAME" \
       background.drawing=on \
-      background.color="$ACCENT_COLOR" \
+      background.color="$PEACH" \
       background.corner_radius=100 \
       background.height=24 \
       icon.color="$BAR_TEXT_COLOR" \
@@ -16,7 +16,7 @@ update() {
   else
     sketchybar --set "$NAME" \
       background.drawing=off \
-      icon.color="$PEACH" \
+      icon.color="$ACCENT_COLOR" \
       label.color="$ACCENT_COLOR"
   fi
 }

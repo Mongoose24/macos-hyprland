@@ -6,7 +6,10 @@
 brew=(
   icon=􀐛
   label=?
+  label.color=$ACCENT_COLOR
   padding_right=10
+  update_freq=300
+  updates=on
   script="$PLUGIN_DIR/brew.sh"
 )
 

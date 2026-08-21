@@ -19,7 +19,8 @@ launchctl bootout "$GUI_DOMAIN/com.apple.OSDUIHelper" > /dev/null 2>&1
 bar=(
   height=30
   color=$BAR_COLOR
-  shadow=on
+  # Avoid a blurred shadow halo extending beyond the 30px bar.
+  shadow=off
   position=top
   sticky=on
   padding_right=2
@@ -59,17 +60,14 @@ defaults=(
 sketchybar --default "${defaults[@]}"
 
 # Left
-# source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
 source "$ITEM_DIR/front_app.sh"
 
 # Center
-# source "$ITEM_DIR/spotify.sh"
 
 # Right
 source "$ITEM_DIR/calendar.sh"
 source "$ITEM_DIR/brew.sh"
-# source "$ITEM_DIR/github.sh"
 source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/volume.sh"
 source "$ITEM_DIR/memory.sh"

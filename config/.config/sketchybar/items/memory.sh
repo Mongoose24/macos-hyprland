@@ -8,6 +8,8 @@ memory=(
   updates=on
   icon=􀫦
   icon.font="$FONT:Bold:14.0"
+  icon.color=$ACCENT_COLOR
+  label.color=$ACCENT_COLOR
   script="$PLUGIN_DIR/memory.sh"
 )
 
