@@ -25,7 +25,7 @@ done
 # helper was removed; yabai.sh now updates each space's app-icon label).
 sketchybar --add item space_separator left \
   --set space_separator icon="􀆊" \
-    icon.color=$PEACH \
+    icon.color=$BLUE \
     icon.padding_left=2 \
     label.drawing=off \
     background.drawing=off \

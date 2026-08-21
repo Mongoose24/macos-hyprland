@@ -23,7 +23,7 @@ front_app=(
   icon.font="sketchybar-app-font:Regular:16.0"
   icon.width=24
   padding_left=0
-  label.color=$PEACH
+  label.color=$BLUE
   label.font="$FONT:Black:12.0"
   associated_display=active
 )
